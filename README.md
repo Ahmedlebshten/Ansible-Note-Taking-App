@@ -14,31 +14,38 @@ This project is a **DevOps demonstration** that automates the deployment of a si
 -----
 
 ## 🏗️ Project Structure
-ansible_aws_note_app/ 
-│── ansible/
-│                  ├── ansible.cfg               # Ansible configuration file
-│                  ├── aws_ec2.yml               # Dynamic AWS EC2 inventory plugin
-│                  ├── site.yml                  # Main playbook
-│                  ├── roles/
-│                         ├── note_app/
-│                                     ├── files/ 
-|                                            ├── app.py           # Flask application code
-│                                     ├── tasks/
-│                                            ├── main.yml         # Deployment tasks
-│                                     ├── handlers/
-│                                            ├── main.yml         # Handlers (if needed)
-│                                     ├── defaults/
-│                                            ├── main.yml         # Default variables
-│                                     ├── vars/
-│                                            ├── main.yml         # App-specific variables
-│                                     │── meta/
-│                                            ├── main.yml         # App-meta data
+```
+ansible_aws_note_app/
 │
-└── README.md                # Project documentation
-└── .gitignore               # secrets files
-
-
------
+├── ansible/
+│   ├── ansible.cfg               # Ansible configuration file
+│   ├── aws_ec2.yml               # Dynamic AWS EC2 inventory plugin
+│   ├── site.yml                  # Main playbook
+│   │
+│   └── roles/
+│       └── note_app/
+│           ├── files/
+│           │   └── app.py        # Flask application code
+│           │
+│           ├── tasks/
+│           │   └── main.yml      # Deployment tasks
+│           │
+│           ├── handlers/
+│           │   └── main.yml      # Handlers (if needed)
+│           │
+│           ├── defaults/
+│           │   └── main.yml      # Default variables
+│           │
+│           ├── vars/
+│           │   └── main.yml      # App-specific variables
+│           │
+│           └── meta/
+│               └── main.yml      # App meta data
+│
+├── README.md                    # Project documentation
+└── .gitignore                   # Secrets files
+```
+____
 
 ## ⚙️ Requirements:
 
@@ -56,7 +63,7 @@ ansible_aws_note_app/
   - `ansible`
   - `boto3`, `botocore` (for AWS dynamic inventory)
 
------
+____
 
 ## 🚀 Deployment Steps:
 
@@ -66,7 +73,7 @@ ansible_aws_note_app/
 mkdir -p ~/.aws
 nano ~/.aws/credentials
 
------
+____
 
 - Content:
   
@@ -75,20 +82,20 @@ aws_access_key_id = YOUR_ACCESS_KEY
 aws_secret_access_key = YOUR_SECRET_KEY
 region = us-east-1
 
------
+____
 
 - Clone the Repository:
   
 git clone https://github.com/Ahmedlebshten/ansible-note-taking-app.git
 cd ansible-note-taking-app/ansible
 
------
+____
 
 - Run the Playbook:
   
 ansible-playbook -i aws_ec2.yml site.yml
 
------
+____
 
 - This will:
   
@@ -97,26 +104,26 @@ Install Python3, pip, SQLite
 Install Flask
 Deploy app.py
 
------
+____
 
 - Start the Application:
 
 - SSH into the EC2 instance:
 ssh -i ansible.pem ec2-user@<public-ip>
 
------
+____
 
 - Run Flask app:
   
 python3 /home/ec2-user/app.py
 
------
+____
 
 - Access it in your browser:
   
 http://<EC2_PUBLIC_IP>:5000
 
------
+____
 
 - 📦 Database:
   
@@ -127,7 +134,7 @@ id (Primary Key, Integer)
 content (Text)
 created_at (Timestamp)
 
------
+____
 
 - To explore DB inside instance:
   
@@ -136,7 +143,7 @@ sqlite> .tables
 sqlite> .schema notes;
 sqlite> SELECT * FROM notes;
 
------
+____
 
 ## 📦 Install role via Ansible Galaxy:
 You can install this role from Ansible Galaxy with:
